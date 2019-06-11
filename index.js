@@ -16,13 +16,13 @@ const randomNumbers = amount =>
 const numberToColor = number => {
   switch (number) {
     case 0:
-      return "skyblue";
+      return skyblue;
     case 1:
-      return "violet";
+      return violet;
     case 2:
-      return "orange";
+      return orange;
     case 3:
-      return "green";
+      return green;
   }
 };
 
@@ -39,11 +39,20 @@ const colorToNumber = color => {
   }
 };
 
-const enlighten = ev => {
-  ev.srcElement.classList.add("light");
+const enlighten = id => {
+  id.classList.add("light");
   setTimeout(() => {
-    ev.srcElement.classList.remove("light");
-  }, 200);
+    id.classList.remove("light");
+  }, 500);
 };
 
 document.body.addEventListener("click", enlighten);
+
+const randomPatronColor = levels => {
+  let a = randomNumbers(levels);
+  a.forEach((element, index) => {
+    setTimeout(() => {
+      enlighten(numberToColor(element));
+    }, 1000 * index);
+  });
+};
